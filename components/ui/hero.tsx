@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "motion/react";
+import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
+import type { MotionValue } from "motion/react";
 import {
   ArrowUpRight,
   Check,
@@ -11,9 +12,9 @@ import {
   Sparkles,
   Zap,
 } from "lucide-react";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import ProductCard from "./product-card";
-import { featuredProducts } from "../../lib/products";
+import { featuredProducts, products } from "../../lib/products";
 
 const principles = [
   {
@@ -76,7 +77,7 @@ export default function ShaderShowcase({
     <main className="overflow-hidden bg-white text-slate-950">
       <motion.section
         id="top"
-        className="relative isolate overflow-hidden bg-gradient-to-b from-white to-slate-50 px-5 pb-24 pt-24 sm:px-8 lg:px-10 lg:pb-32 lg:pt-32"
+        className="relative isolate overflow-hidden bg-gradient-to-b from-white to-slate-50 px-5 pb-24 pt-10 sm:px-8 sm:pt-12 lg:px-10 lg:pb-32 lg:pt-16"
       >
         <div className="relative mx-auto grid max-w-7xl gap-14 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
           <div className="relative z-10">
@@ -155,127 +156,9 @@ export default function ShaderShowcase({
               </div>
             </div>
           </div>
-          <motion.div
-            style={{ y: mockupY }}
-            initial={{ opacity: 0, x: 36, rotateY: -10, rotateZ: 2 }}
-            animate={{ opacity: 1, x: 0, rotateY: -3, rotateZ: 1 }}
-            transition={{ duration: 0.9, delay: 0.15, ease: "easeOut" }}
-            className="relative mx-auto w-full max-w-[620px] perspective-[1200px]"
-          >
-            <div className="rounded-2xl border border-slate-200 bg-white p-2 shadow-2xl shadow-slate-900/15 ring-1 ring-emerald-900/5">
-              <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
-                <div className="flex items-center gap-1.5 border-b border-slate-200 bg-white px-4 py-3">
-                  <span className="size-2.5 rounded-full bg-slate-300" />
-                  <span className="size-2.5 rounded-full bg-slate-300" />
-                  <span className="size-2.5 rounded-full bg-slate-300" />
-                  <span className="ml-3 h-6 flex-1 rounded-md bg-slate-100" />
-                </div>
-                <div className="grid min-h-[260px] grid-cols-[72px_1fr] sm:min-h-[340px] sm:grid-cols-[110px_1fr]">
-                  <div className="border-r border-slate-200 bg-slate-950 p-3">
-                    <div className="mb-8 h-5 w-8 rounded bg-white/20" />
-                    <div className="grid gap-3">
-                      {[1, 2, 3, 4].map((item) => (
-                        <span
-                          key={item}
-                          className={`h-2 rounded ${item === 1 ? "w-11 bg-emerald-500" : "w-8 bg-white/15"}`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                  <div className="p-4 sm:p-7">
-                    <div className="flex items-end justify-between">
-                      <div>
-                        <div className="h-3 w-24 rounded bg-slate-200" />
-                        <div className="mt-3 h-7 w-40 rounded bg-slate-900" />
-                      </div>
-                      <div className="h-8 w-20 rounded-lg bg-emerald-800" />
-                    </div>
-                    <div className="mt-7 grid gap-3 sm:grid-cols-3">
-                      {[1, 2, 3].map((item) => (
-                        <div
-                          key={item}
-                          className="rounded-lg border border-slate-200 bg-white p-3"
-                        >
-                          <div className="h-2 w-12 rounded bg-slate-200" />
-                          <div className="mt-3 h-5 w-16 rounded bg-slate-800" />
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-4 h-20 rounded-lg border border-slate-200 bg-white p-3">
-                      <div className="flex h-full items-end gap-2">
-                        {[35, 55, 42, 72, 62, 85, 68, 92].map(
-                          (height, index) => (
-                            <span
-                              key={index}
-                              style={{ height: `${height}%` }}
-                              className="flex-1 rounded-t bg-emerald-800/80"
-                            />
-                          ),
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <motion.div
-              aria-hidden="true"
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -right-3 top-8 hidden rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-lg sm:block"
-            >
-              {/* <p className="text-[10px] font-bold uppercase tracking-[.15em] text-slate-400">
-                Portfolio status
-              </p> */}
-              <p className="mt-1 text-sm font-extrabold text-slate-950">
-                [ISI: metrik singkat]
-              </p>
-            </motion.div>
-            <motion.div
-              aria-hidden="true"
-              animate={{ y: [0, 7, 0] }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.4,
-              }}
-              className="absolute -left-3 bottom-12 hidden rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-lg sm:block"
-            >
-              <p className="text-[10px] font-bold uppercase tracking-[.15em] text-emerald-700">
-                Dowa Labs
-              </p>
-              <p className="mt-1 text-xs font-semibold text-slate-600">
-                [ISI: insight singkat]
-              </p>
-            </motion.div>
-          </motion.div>
+          <DashboardDeck mockupY={mockupY} />
         </div>
       </motion.section>
-
-      <section
-        aria-label="Trusted by teams"
-        className="border-y border-slate-200 bg-white px-5 py-10 sm:px-8 lg:px-10"
-      >
-        <div className="mx-auto max-w-7xl">
-          {/* <p className="text-center text-xs font-bold uppercase tracking-[.2em] text-slate-400">
-            [ISI: teks pengantar trusted-by section]
-          </p> */}
-          {/* TODO: ganti dengan logo klien asli sebelum production. */}
-          <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-5">
-            {["[LOGO 1]", "[LOGO 2]", "[LOGO 3]", "[LOGO 4]", "[LOGO 5]"].map(
-              (label) => (
-                <div
-                  key={label}
-                  className="grid h-10 place-items-center rounded-lg bg-slate-200 px-3 text-xs font-bold tracking-wide text-slate-500 grayscale opacity-60"
-                >
-                  {label}
-                </div>
-              ),
-            )}
-          </div>
-        </div>
-      </section>
 
       <section
         id="products"
@@ -309,7 +192,8 @@ export default function ShaderShowcase({
               href="/portfolio"
               className="inline-flex items-center rounded-full border border-slate-300 px-5 py-3 text-sm font-bold text-slate-700 transition hover:border-emerald-800 hover:text-emerald-900"
             >
-              More products <ArrowUpRight className="ml-2 size-4" />
+              View all {products.length} products{" "}
+              <ArrowUpRight className="ml-2 size-4" />
             </a>
           </div>
         </div>
@@ -485,6 +369,302 @@ export default function ShaderShowcase({
         </div>
       </section>
     </main>
+  );
+}
+
+type DeckProduct = "DowaLabs" | "HRGA" | "TaxBuddy";
+
+const deckProducts: Array<{
+  name: DeckProduct;
+  initials: string;
+  accent: "emerald" | "indigo" | "amber";
+}> = [
+  { name: "DowaLabs", initials: "DL", accent: "emerald" },
+  { name: "HRGA", initials: "HR", accent: "indigo" },
+  { name: "TaxBuddy", initials: "TB", accent: "amber" },
+];
+
+const deckAccent = {
+  emerald: {
+    activeDot: "bg-emerald-600",
+    sidebar: "bg-emerald-500",
+    button: "bg-emerald-800",
+    bars: "bg-emerald-800/80",
+    soft: "bg-emerald-50 text-emerald-700",
+  },
+  indigo: {
+    activeDot: "bg-indigo-600",
+    sidebar: "bg-indigo-500",
+    button: "bg-indigo-600",
+    bars: "bg-indigo-600/80",
+    soft: "bg-indigo-50 text-indigo-700",
+  },
+  amber: {
+    activeDot: "bg-amber-600",
+    sidebar: "bg-amber-500",
+    button: "bg-amber-600",
+    bars: "bg-amber-600/80",
+    soft: "bg-amber-50 text-amber-700",
+  },
+};
+
+function DashboardDeck({ mockupY }: { mockupY: MotionValue<number> }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeProduct = deckProducts[activeIndex];
+  const backProducts = [
+    deckProducts[(activeIndex + 1) % deckProducts.length],
+    deckProducts[(activeIndex + 2) % deckProducts.length],
+  ];
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % deckProducts.length);
+    }, 4000);
+
+    return () => window.clearInterval(timer);
+  }, [activeIndex]);
+
+  return (
+    <motion.div
+      style={{ y: mockupY }}
+      initial={{ opacity: 0, x: 36, rotateY: -10, rotateZ: 2 }}
+      animate={{ opacity: 1, x: 0, rotateY: -3, rotateZ: 1 }}
+      transition={{ duration: 0.9, delay: 0.15, ease: "easeOut" }}
+      className="relative mx-auto w-full max-w-[620px] perspective-[1200px]"
+    >
+      <div className="relative min-h-[292px] sm:min-h-[372px]">
+        {backProducts.map((product, position) => (
+          <motion.div
+            key={`${product.name}-${position}`}
+            initial={
+              position === 0
+                ? { scale: 0.95, opacity: 0.7, y: 8, x: 16, rotate: 6 }
+                : { scale: 0.9, opacity: 0.5, y: 16, x: -12, rotate: -8 }
+            }
+            animate={{
+              scale: position === 0 ? 0.95 : 0.9,
+              opacity: position === 0 ? 0.7 : 0.5,
+              y: position === 0 ? 8 : 16,
+              x: position === 0 ? 16 : -12,
+              rotate: position === 0 ? 6 : -8,
+            }}
+            transition={{
+              duration: 0.55,
+              delay: position === 0 ? 0.12 : 0.2,
+              ease: "easeInOut",
+            }}
+            className={`absolute inset-x-0 top-0 origin-bottom ${position === 0 ? "z-20" : "z-10"}`}
+          >
+            <DashboardMockup
+              product={product}
+              depth={position === 0 ? "middle" : "back"}
+            />
+          </motion.div>
+        ))}
+
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={activeProduct.name}
+            initial={{ opacity: 0, x: 16, y: 8, rotate: 6, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
+            exit={{
+              opacity: 0,
+              x: -140,
+              rotate: -12,
+              scale: 0.92,
+              transition: { duration: 0.3, ease: "easeInOut" },
+            }}
+            transition={{ duration: 0.55, ease: "easeInOut" }}
+            className="relative z-30 origin-bottom"
+          >
+            <DashboardMockup product={activeProduct} depth="front" />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      <div className="mt-4 flex items-center justify-center gap-2">
+        {deckProducts.map((product, index) => (
+          <button
+            key={product.name}
+            type="button"
+            aria-label={`Show ${product.name} dashboard`}
+            aria-current={index === activeIndex}
+            onClick={() => setActiveIndex(index)}
+            className={`rounded-full transition-all duration-300 ${index === activeIndex ? `h-2.5 w-6 ${deckAccent[product.accent].activeDot}` : "size-2 bg-slate-300 hover:bg-slate-400"}`}
+          />
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+function DashboardMockup({
+  product,
+  depth = "front",
+}: {
+  product: (typeof deckProducts)[number];
+  depth?: "front" | "middle" | "back";
+}) {
+  const accent = deckAccent[product.accent];
+  const shadow =
+    depth === "front"
+      ? "shadow-2xl shadow-slate-900/15"
+      : depth === "middle"
+        ? "shadow-lg shadow-slate-900/10"
+        : "shadow-md shadow-slate-900/10";
+
+  return (
+    <div
+      className={`rounded-2xl border border-slate-200 bg-white p-2 ${shadow} ring-1 ring-slate-900/5`}
+    >
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+        <div className="flex items-center gap-1.5 border-b border-slate-200 bg-white px-4 py-3">
+          <span className="size-2.5 rounded-full bg-slate-300" />
+          <span className="size-2.5 rounded-full bg-slate-300" />
+          <span className="size-2.5 rounded-full bg-slate-300" />
+          <span className="ml-3 h-6 flex-1 rounded-md bg-slate-100" />
+        </div>
+        <div className="grid min-h-[260px] grid-cols-[72px_1fr] sm:min-h-[340px] sm:grid-cols-[110px_1fr]">
+          <div className="border-r border-slate-200 bg-slate-950 p-3">
+            <div className="mb-8 flex items-center gap-1.5">
+              <span className={`size-5 rounded-md ${accent.sidebar}`} />
+              <span className="hidden h-2 w-12 rounded bg-white/20 sm:block" />
+            </div>
+            <div className="grid gap-3">
+              {[1, 2, 3, 4].map((item) => (
+                <span
+                  key={item}
+                  className={`h-2 rounded ${item === 1 ? `w-11 ${accent.sidebar}` : "w-8 bg-white/15"}`}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="p-4 sm:p-7">
+            <div className="flex items-end justify-between">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[.15em] text-slate-400">
+                  {product.name}
+                </p>
+                <div className="mt-2 h-7 w-36 rounded bg-slate-900 sm:w-40" />
+              </div>
+              <div className={`h-8 w-20 rounded-lg ${accent.button}`} />
+            </div>
+            {product.name === "DowaLabs" && <DowaLabsMockup accent={accent} />}
+            {product.name === "HRGA" && <HrgaMockup accent={accent} />}
+            {product.name === "TaxBuddy" && <TaxBuddyMockup accent={accent} />}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DowaLabsMockup({
+  accent,
+}: {
+  accent: (typeof deckAccent)["emerald"];
+}) {
+  return (
+    <>
+      <div className="mt-7 grid gap-3 sm:grid-cols-3">
+        {["Projects", "Generated", "Membership"].map((label) => (
+          <div
+            key={label}
+            className="rounded-lg border border-slate-200 bg-white p-3"
+          >
+            <div className="h-2 w-12 rounded bg-slate-200" />
+            <p className="mt-2 truncate text-[9px] font-semibold text-slate-400">
+              {label}
+            </p>
+            <div className="mt-2 h-5 w-16 rounded bg-slate-800" />
+          </div>
+        ))}
+      </div>
+      <div className="mt-4 h-20 rounded-lg border border-slate-200 bg-white p-3">
+        <div className="flex h-full items-end gap-2">
+          {[35, 55, 42, 72, 62, 85, 68, 92].map((height, index) => (
+            <span
+              key={index}
+              style={{ height: `${height}%` }}
+              className={`flex-1 rounded-t ${accent.bars}`}
+            />
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
+function HrgaMockup({ accent }: { accent: (typeof deckAccent)["indigo"] }) {
+  return (
+    <>
+      <div className="mt-7 grid gap-3 sm:grid-cols-2">
+        {["Total karyawan", "Total aset"].map((label) => (
+          <div
+            key={label}
+            className="rounded-lg border border-slate-200 bg-white p-3"
+          >
+            <div className={`mb-2 size-5 rounded ${accent.soft}`} />
+            <p className="text-[9px] font-semibold text-slate-400">{label}</p>
+            <div className="mt-2 h-5 w-12 rounded bg-slate-800" />
+          </div>
+        ))}
+      </div>
+      <div className="mt-4 rounded-lg border border-slate-200 bg-white p-3">
+        <div className="mb-3 flex items-center justify-between">
+          <div className="h-2 w-24 rounded bg-slate-300" />
+          <div className={`h-5 w-14 rounded ${accent.soft}`} />
+        </div>
+        <div className="grid gap-2">
+          {["Employee record", "Attendance today", "Pending review"].map(
+            (label) => (
+              <div
+                key={label}
+                className="flex items-center gap-2 rounded border border-slate-100 p-2"
+              >
+                <span className={`size-2 rounded-full ${accent.sidebar}`} />
+                <span className="h-2 w-24 rounded bg-slate-200" />
+                <span className="ml-auto h-2 w-8 rounded bg-slate-100" />
+                <span className="sr-only">{label}</span>
+              </div>
+            ),
+          )}
+        </div>
+      </div>
+    </>
+  );
+}
+
+function TaxBuddyMockup({ accent }: { accent: (typeof deckAccent)["amber"] }) {
+  return (
+    <>
+      <div className="mt-7 rounded-lg border border-slate-200 bg-white p-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="h-2 w-20 rounded bg-slate-300" />
+            <div className="mt-2 h-5 w-32 rounded bg-slate-800" />
+          </div>
+          <div
+            className={`grid size-9 place-items-center rounded-lg ${accent.soft}`}
+          >
+            <span className="h-4 w-3 rounded-sm border-2 border-current" />
+          </div>
+        </div>
+        <div className="mt-5 grid gap-2">
+          {["Invoice data", "Tax details", "XML export"].map((label) => (
+            <div
+              key={label}
+              className="flex items-center gap-2 rounded border border-slate-100 p-2"
+            >
+              <span className="h-2 w-20 rounded bg-slate-200" />
+              <span className="ml-auto h-2 w-14 rounded bg-slate-100" />
+              <span className="sr-only">{label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className={`mt-3 h-8 rounded-lg ${accent.button}`} />
+    </>
   );
 }
 

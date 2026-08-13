@@ -1,8 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-html{scroll-behavior:smooth}*{box-sizing:border-box} body{margin:0;background:#f7faf8;color:#17231f;font-family:'DM Sans',sans-serif} h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif} button,input{font:inherit}.hero-mesh{background:radial-gradient(circle at 80% 20%,rgba(15,167,109,.18),transparent 50%),radial-gradient(circle at 60% 60%,rgba(15,167,109,.08),transparent 60%)}.hero-spotlight{pointer-events:none;position:absolute;width:520px;height:520px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(15,167,109,.15),transparent 70%);transition:left .2s ease-out,top .2s ease-out}
-section:not(#top){animation:section-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 32%}
-@keyframes section-reveal{from{opacity:.35;transform:translateY(28px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+html {
+  scroll-behavior: smooth;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #f7faf8;
+  color: #17231f;
+  font-family: "DM Sans", sans-serif;
+}
+h1,
+h2,
+h3 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+button,
+input {
+  font: inherit;
+}
+.hero-mesh {
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(15, 167, 109, 0.18),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 60% 60%,
+      rgba(15, 167, 109, 0.08),
+      transparent 60%
+    );
+}
+.hero-spotlight {
+  pointer-events: none;
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(15, 167, 109, 0.15),
+    transparent 70%
+  );
+  transition:
+    left 0.2s ease-out,
+    top 0.2s ease-out;
+}
+section:not(#top) {
+  animation: section-reveal linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 32%;
+}
+@keyframes section-reveal {
+  from {
+    opacity: 0.35;
+    transform: translateY(28px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
