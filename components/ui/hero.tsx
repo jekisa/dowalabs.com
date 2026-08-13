@@ -65,7 +65,7 @@ export default function ShaderShowcase({
     event.preventDefault();
     const body = `Nama Perusahaan: ${form.company}\nEmail: ${form.email}\nProduk yang diminati: ${form.product}\nPesan: ${form.message}`;
     setSent(true);
-    const mailto = `mailto:hello@dowa-labs.com?subject=${encodeURIComponent(`Inquiry dari ${form.company}`)}&body=${encodeURIComponent(body)}`;
+    const mailto = `mailto:dowatech889@gmail.com?subject=${encodeURIComponent(`Inquiry dari ${form.company}`)}&body=${encodeURIComponent(body)}`;
     try {
       window.open(mailto, "_blank", "noopener,noreferrer");
     } catch {
@@ -128,10 +128,10 @@ export default function ShaderShowcase({
               <motion.a
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                href="#about"
+                href="#contact"
                 className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-3.5 text-sm font-bold text-slate-700 transition hover:border-slate-500 hover:text-slate-950"
               >
-                Watch demo <PlayCircle className="size-4" />
+                Try Demo <PlayCircle className="size-4" />
               </motion.a>
             </motion.div>
             <div className="mt-16 flex items-center gap-4">
@@ -275,10 +275,10 @@ export default function ShaderShowcase({
               idea? We&apos;d love to hear from you.
             </p>
             <a
-              href="mailto:hello@dowa-labs.com"
+              href="mailto:dowatech889@gmail.com"
               className="mt-8 inline-flex rounded-full bg-slate-950 px-6 py-3.5 text-sm font-bold text-white transition hover:bg-emerald-900"
             >
-              hello@dowa-labs.com <ArrowUpRight className="ml-2 size-4" />
+              dowatech889@gmail.com <ArrowUpRight className="ml-2 size-4" />
             </a>
           </div>
           <form

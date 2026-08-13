@@ -108,7 +108,7 @@ export function SiteNavbar() {
           >
             <BrandMark />
           </motion.span>
-          dowa labs<span className="text-emerald-800">.</span>
+          DowaLabs<span className="text-emerald-800"></span>
         </motion.a>
 
         <div className="hidden items-center gap-7 md:flex">
@@ -230,17 +230,17 @@ export function SiteFooter() {
               <span className="grid size-11 place-items-center rounded-xl bg-transparent">
                 <BrandMark />
               </span>
-              dowa labs<span className="text-emerald-800">.</span>
+              DowaLabs<span className="text-emerald-800"></span>
             </a>
             <p className="mt-5 max-w-xs text-sm leading-6 text-slate-500">
               A product studio building useful software for real businesses in
               Indonesia and beyond.
             </p>
             <a
-              href="mailto:hello@dowa-labs.com"
+              href="mailto:dowatech889@gmail.com"
               className="mt-5 inline-flex text-sm font-bold text-emerald-900"
             >
-              hello@dowa-labs.com <ArrowUpRight className="ml-1 size-4" />
+              dowatech889@gmail.com <ArrowUpRight className="ml-1 size-4" />
             </a>
           </div>
           <div>

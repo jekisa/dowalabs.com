@@ -382,10 +382,10 @@ export default function Dashboard() {
               have an idea worth exploring—we&rsquo;d love to hear from you.
             </p>
             <a
-              href="mailto:hello@dowa-labs.com"
+              href="mailto:dowatech889@gmail.com"
               className="mt-8 inline-flex items-center rounded-full bg-ink-900 px-6 py-3.5 text-sm font-bold text-white hover:bg-emerald-700"
             >
-              hello@dowa-labs.com <MoveUpRight className="ml-2" size={16} />
+              dowatech889@gmail.com <MoveUpRight className="ml-2" size={16} />
             </a>
           </div>
           <form
@@ -445,7 +445,7 @@ export default function Dashboard() {
           <span>© 2026 Dowa Labs. Built with purpose in Indonesia.</span>
           <div className="flex gap-5">
             <a href="#about">About</a>
-            <a href="mailto:hello@dowa-labs.com">Contact</a>
+            <a href="mailto:dowatech889@gmail.com">Contact</a>
           </div>
         </div>
       </footer>
