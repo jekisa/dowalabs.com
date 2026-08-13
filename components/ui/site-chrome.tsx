@@ -260,16 +260,40 @@ export function SiteFooter() {
             </p>
             <div className="mt-5 grid gap-3 text-sm text-slate-600">
               <a
-                href="https://dowa-labs.com"
+                href="https://generator.dowa-labs.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 DowaLabs <ArrowUpRight className="ml-1 inline size-3.5" />
               </a>
-              <a href="/portfolio">HRGA</a>
-              <a href="/portfolio">Hadirly</a>
-              <a href="/portfolio">Scheduler</a>
-              <a href="/portfolio">TaxBuddy</a>
+              <a
+                href="https://hrga.dowa-labs.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                HRGA
+              </a>
+              <a
+                href="https://hadirly.dowa-labs.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Hadirly
+              </a>
+              <a
+                href="https://scheduler.dowa-labs.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Scheduler
+              </a>
+              <a
+                href="https://taxbuddy.dowa-labs.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                TaxBuddy
+              </a>
             </div>
           </div>
           <div>

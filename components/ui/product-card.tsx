@@ -46,8 +46,8 @@ export default function ProductCard({
       transition={{ ...fadeUp.transition, delay: index * 0.1 }}
       whileHover={{ y: -4 }}
       href={product.url}
-      target={product.url === "#" ? undefined : "_blank"}
-      rel={product.url === "#" ? undefined : "noopener noreferrer"}
+      target="_blank"
+      rel="noopener noreferrer"
       className={`group relative flex min-h-[470px] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-lg transition duration-300 ease-out hover:shadow-xl ${hoverAccent}`}
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
