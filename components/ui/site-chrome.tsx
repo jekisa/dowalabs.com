@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 
 const navItems = [
   { label: "Products", href: "/portfolio" },
+  { label: "Services", href: "/services" },
   { label: "Why Dowa", href: "/#why" },
   { label: "About", href: "/#about" },
 ];
@@ -114,7 +115,8 @@ export function SiteNavbar() {
         <div className="hidden items-center gap-7 md:flex">
           {navItems.map((item) => {
             const active =
-              item.href === "/portfolio" && pathname === "/portfolio";
+              (item.href === "/portfolio" || item.href === "/services") &&
+              pathname === item.href;
             return (
               <a
                 key={item.href}
@@ -177,7 +179,8 @@ export function SiteNavbar() {
               <div className="grid gap-1">
                 {navItems.map((item, index) => {
                   const active =
-                    item.href === "/portfolio" && pathname === "/portfolio";
+                    (item.href === "/portfolio" || item.href === "/services") &&
+                    pathname === item.href;
                   return (
                     <motion.a
                       key={item.href}
