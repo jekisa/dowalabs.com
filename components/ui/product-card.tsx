@@ -49,16 +49,16 @@ export default function ProductCard({
       rel={product.url === "#" ? undefined : "noopener noreferrer"}
       className={`group relative flex min-h-[470px] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-lg transition duration-300 ease-out hover:shadow-xl ${hoverAccent}`}
     >
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex flex-wrap items-start justify-between gap-2">
         <span
           className={`rounded-full border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider ${accent}`}
         >
           {product.label}
         </span>
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-[11px] font-bold text-slate-600">
+        <span className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-slate-100 px-3 py-1.5 text-[11px] font-bold text-slate-600">
           {product.status === "Live" && (
             <span
-              className="size-1.5 animate-pulse rounded-full bg-emerald-500"
+              className="size-1.5 shrink-0 animate-pulse rounded-full bg-emerald-500"
               aria-hidden="true"
             />
           )}

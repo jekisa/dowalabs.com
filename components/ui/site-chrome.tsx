@@ -34,10 +34,13 @@ export function AnnouncementBar() {
   }, []);
   if (!visible) return null;
   return (
-    <div className="sticky top-0 z-50 bg-slate-950 px-12 py-2.5 pl-4 text-center text-xs font-medium leading-5 text-white sm:px-10">
+    <div className="sticky top-0 z-50 bg-slate-950 px-14 py-3 pl-3 text-center text-sm font-medium leading-5 text-white sm:px-10 sm:py-2.5 sm:text-xs">
       <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-x-2 gap-y-0.5">
         <Bell size={13} className="text-emerald-300" />
-        <span>Big news — we reduced our fees!! </span>
+        <span className="sm:hidden">Big news!</span>
+        <span className="hidden sm:inline">
+          Big news — we reduced our fees!!
+        </span>
         <a
           href="/#contact"
           className="font-bold text-emerald-300 hover:text-white"
@@ -51,7 +54,7 @@ export function AnnouncementBar() {
           sessionStorage.setItem("dowa-announcement-dismissed", "true");
           setVisible(false);
         }}
-        className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 text-white/60 hover:bg-white/10 hover:text-white"
+        className="absolute right-1 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-lg text-white/60 transition hover:bg-white/10 hover:text-white"
       >
         <X size={14} />
       </button>

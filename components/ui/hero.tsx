@@ -145,18 +145,20 @@ export default function ShaderShowcase({
                   </span>
                 ))}
               </div>
-              {/* TODO: replace 12k+ with a verified real metric before production. */}
+              {/* TODO: verifikasi angka 12k+ ini sebelum production, ganti dengan data riil jika belum akurat. */}
               <div className="flex flex-col leading-tight">
                 <span className="text-lg font-extrabold text-slate-950">
                   12k+
                 </span>
                 <span className="text-xs text-slate-500">
-                  [10k+ metric verified] users across Indonesia
+                  Used by teams and professionals across Indonesia
                 </span>
               </div>
             </div>
           </div>
-          <DashboardDeck mockupY={mockupY} />
+          <div className="hidden md:block">
+            <DashboardDeck mockupY={mockupY} />
+          </div>
         </div>
       </motion.section>
 
@@ -409,6 +411,7 @@ const deckAccent = {
 };
 
 function DashboardDeck({ mockupY }: { mockupY: MotionValue<number> }) {
+  const [isDesktop, setIsDesktop] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const activeProduct = deckProducts[activeIndex];
   const backProducts = [
@@ -417,12 +420,25 @@ function DashboardDeck({ mockupY }: { mockupY: MotionValue<number> }) {
   ];
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const updateDesktopState = () => setIsDesktop(mediaQuery.matches);
+    updateDesktopState();
+    mediaQuery.addEventListener("change", updateDesktopState);
+
+    return () => mediaQuery.removeEventListener("change", updateDesktopState);
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) return;
+
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % deckProducts.length);
     }, 4000);
 
     return () => window.clearInterval(timer);
-  }, [activeIndex]);
+  }, [isDesktop]);
+
+  if (!isDesktop) return null;
 
   return (
     <motion.div
