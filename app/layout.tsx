@@ -6,6 +6,7 @@ import {
   SiteFooter,
   SiteNavbar,
 } from "../components/ui/site-chrome";
+import WhatsAppFab from "../components/ui/whatsapp-fab";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://dowa-labs.com"),
@@ -84,6 +85,7 @@ export default function RootLayout({
           <SiteNavbar />
           {children}
           <SiteFooter />
+          <WhatsAppFab />
         </Providers>
       </body>
     </html>
