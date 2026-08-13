@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowUp, ArrowUpRight, Bell, Menu, X } from "lucide-react";
 import {
   AnimatePresence,
@@ -24,6 +25,18 @@ const mobileItemVariants = {
     transition: { duration: 0.25, delay: index * 0.05 },
   }),
 };
+
+function BrandMark() {
+  return (
+    <Image
+      src="/images/logo/logo-transparent.png"
+      alt="Dowa Labs logo"
+      width={44}
+      height={44}
+      className="size-11 object-contain"
+    />
+  );
+}
 
 export function AnnouncementBar() {
   const [visible, setVisible] = useState(true);
@@ -91,9 +104,9 @@ export function SiteNavbar() {
           <motion.span
             whileHover={{ rotate: 3, scale: 1.05 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="grid size-9 place-items-center rounded-xl bg-slate-950 text-sm text-white"
+            className="grid size-11 place-items-center rounded-xl bg-transparent"
           >
-            D
+            <BrandMark />
           </motion.span>
           dowa labs<span className="text-emerald-800">.</span>
         </motion.a>
@@ -214,8 +227,8 @@ export function SiteFooter() {
               href="/"
               className="flex items-center gap-2.5 font-extrabold tracking-[-.04em] text-slate-950"
             >
-              <span className="grid size-9 place-items-center rounded-xl bg-slate-950 text-sm text-white">
-                D
+              <span className="grid size-11 place-items-center rounded-xl bg-transparent">
+                <BrandMark />
               </span>
               dowa labs<span className="text-emerald-800">.</span>
             </a>

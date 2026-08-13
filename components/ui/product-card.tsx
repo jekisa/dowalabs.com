@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import type { Product } from "../../lib/products";
@@ -65,28 +66,21 @@ export default function ProductCard({
           {product.status}
         </span>
       </div>
-      <div className="mt-6 aspect-video overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-3">
+      <div className="relative mt-6 aspect-video overflow-hidden rounded-xl border border-slate-200 bg-slate-50 p-3">
         <div className="flex items-center gap-1 border-b border-slate-200 pb-2">
           <span className="size-1.5 rounded-full bg-slate-300" />
           <span className="size-1.5 rounded-full bg-slate-300" />
           <span className="ml-2 h-2 w-20 rounded bg-slate-200" />
         </div>
-        <div className="mt-4 grid grid-cols-[1fr_1.8fr] gap-3">
-          <div className="space-y-2">
-            <div className="h-2 w-12 rounded bg-slate-200" />
-            <div className="h-2 w-16 rounded bg-slate-200" />
-            <div className="h-2 w-10 rounded bg-emerald-800/70" />
-          </div>
-          <div className="grid grid-cols-3 gap-2">
-            {[1, 2, 3].map((item) => (
-              <div
-                key={item}
-                className="h-12 rounded-md border border-slate-200 bg-white"
-              />
-            ))}
-          </div>
+        <div className="absolute inset-x-3 bottom-3 top-9 overflow-hidden rounded-b-md bg-slate-100">
+          <Image
+            src={product.previewImage}
+            alt={`${product.name} dashboard preview`}
+            fill
+            sizes="(max-width: 767px) 90vw, (max-width: 1279px) 30vw, 360px"
+            className="object-cover object-top"
+          />
         </div>
-        <div className="mt-3 h-7 rounded-md bg-white shadow-sm" />
       </div>
       <div className="mt-auto pt-6">
         <div

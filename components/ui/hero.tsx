@@ -379,11 +379,27 @@ type DeckProduct = "DowaLabs" | "HRGA" | "TaxBuddy";
 const deckProducts: Array<{
   name: DeckProduct;
   initials: string;
+  previewImage: string;
   accent: "emerald" | "indigo" | "amber";
 }> = [
-  { name: "DowaLabs", initials: "DL", accent: "emerald" },
-  { name: "HRGA", initials: "HR", accent: "indigo" },
-  { name: "TaxBuddy", initials: "TB", accent: "amber" },
+  {
+    name: "DowaLabs",
+    initials: "DL",
+    previewImage: "/images/dowalabs.png",
+    accent: "emerald",
+  },
+  {
+    name: "HRGA",
+    initials: "HR",
+    previewImage: "/images/hrga.png",
+    accent: "indigo",
+  },
+  {
+    name: "TaxBuddy",
+    initials: "TB",
+    previewImage: "/images/taxbuddy.png",
+    accent: "amber",
+  },
 ];
 
 const deckAccent = {
@@ -555,19 +571,15 @@ function DashboardMockup({
               ))}
             </div>
           </div>
-          <div className="p-4 sm:p-7">
-            <div className="flex items-end justify-between">
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[.15em] text-slate-400">
-                  {product.name}
-                </p>
-                <div className="mt-2 h-7 w-36 rounded bg-slate-900 sm:w-40" />
-              </div>
-              <div className={`h-8 w-20 rounded-lg ${accent.button}`} />
-            </div>
-            {product.name === "DowaLabs" && <DowaLabsMockup accent={accent} />}
-            {product.name === "HRGA" && <HrgaMockup accent={accent} />}
-            {product.name === "TaxBuddy" && <TaxBuddyMockup accent={accent} />}
+          <div className="relative min-h-[260px] overflow-hidden bg-white sm:min-h-[340px]">
+            <Image
+              src={product.previewImage}
+              alt={`${product.name} dashboard screenshot`}
+              fill
+              sizes="(max-width: 767px) 70vw, 500px"
+              priority={product.name === "DowaLabs"}
+              className="object-cover object-top"
+            />
           </div>
         </div>
       </div>

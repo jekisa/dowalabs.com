@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   title: "Dowa Labs — Useful software for real problems",
   description:
     "Dowa Labs is a product studio building focused SaaS for ambitious businesses.",
+  icons: {
+    icon: "/images/logo/logo-transparent.png",
+    shortcut: "/images/logo/logo-transparent.png",
+    apple: "/images/logo/logo-transparent.png",
+  },
 };
 
 export default function RootLayout({
