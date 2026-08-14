@@ -14,7 +14,77 @@ import {
 } from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
 import ProductCard from "./product-card";
+import FAQAccordion, { type FAQItem } from "./faq-accordion";
 import { featuredProducts, products } from "../../lib/products";
+
+// Review: konten FAQ ini di-generate, mohon di-review ulang oleh tim Dowa Labs sebelum production.
+const faqItems: FAQItem[] = [
+  {
+    question: "Berapa lama waktu implementasi produk atau custom project?",
+    answer:
+      "Tergantung kompleksitas kebutuhan. Untuk produk yang sudah ada (DowaLabs, HRGA, Hadirly, Scheduler, TaxBuddy), setup bisa dilakukan dalam hitungan hari. Untuk custom project, kami biasanya membutuhkan 2-6 minggu dari discovery sampai go-live, tergantung scope pekerjaan.",
+  },
+  {
+    question: "Bagaimana Dowa Labs menjaga keamanan data perusahaan kami?",
+    answer:
+      "Setiap sistem yang kami bangun melalui proses audit keamanan mencakup role-based access control, audit trail, dan pengecekan kerentanan seperti IDOR dan race condition. Data klien tidak pernah dibagikan ke pihak ketiga tanpa izin.",
+  },
+  {
+    question:
+      "Apakah produk yang ada bisa dikustomisasi sesuai kebutuhan bisnis kami?",
+    answer:
+      "Bisa. Produk seperti HRGA dan Scheduler dirancang modular sehingga bisa disesuaikan dengan alur kerja spesifik perusahaan Anda. Diskusikan kebutuhan Anda dengan tim kami untuk mengetahui opsi kustomisasi yang tersedia.",
+  },
+  {
+    question: "Bagaimana model kerja sama dan pricing-nya?",
+    answer: (
+      <>
+        Kami menggunakan sistem berlangganan berbayar per bulan, dengan beberapa
+        pilihan paket sesuai kebutuhan dan skala bisnis Anda. Untuk detail harga
+        dan paket yang paling sesuai, silakan hubungi kami langsung via{" "}
+        <a
+          href="https://wa.me/6282298062959"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-emerald-600 underline decoration-emerald-200 underline-offset-4 transition hover:text-emerald-800"
+        >
+          WhatsApp
+        </a>{" "}
+        atau{" "}
+        <a
+          href="mailto:dowatech889@gmail.com"
+          className="text-emerald-600 underline decoration-emerald-200 underline-offset-4 transition hover:text-emerald-800"
+        >
+          email
+        </a>
+        .
+      </>
+    ),
+  },
+  {
+    question: "Selain software, apa saja layanan lain yang Dowa Labs sediakan?",
+    answer: (
+      <>
+        Selain produk SaaS, kami juga menyediakan jasa instalasi jaringan
+        kantor, instalasi CCTV, instalasi AC, dan layanan Meta Ads Specialist
+        untuk kebutuhan digital marketing bisnis Anda. Lihat detail lengkap di
+        halaman{" "}
+        <a
+          href="/services"
+          className="font-semibold text-emerald-800 underline decoration-emerald-200 underline-offset-4 transition hover:text-emerald-950"
+        >
+          Services
+        </a>
+        .
+      </>
+    ),
+  },
+  {
+    question: "Bagaimana cara memulai kerja sama dengan Dowa Labs?",
+    answer:
+      "Cukup isi form di bagian bawah halaman ini atau hubungi kami langsung via WhatsApp/email. Tim kami akan menghubungi Anda dalam 1x24 jam untuk diskusi awal kebutuhan bisnis Anda.",
+  },
+];
 
 const principles = [
   {
@@ -227,6 +297,26 @@ export default function ShaderShowcase({
               />
             ))}
           </div>
+        </div>
+      </section>
+
+      <section
+        id="faq"
+        className="bg-white px-5 py-24 sm:px-8 lg:px-10 lg:py-32"
+      >
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+          <motion.div {...fadeUp}>
+            <p className="mb-4 text-xs font-bold uppercase tracking-[.2em] text-emerald-800">
+              FAQ
+            </p>
+            <h2 className="max-w-xl text-4xl font-extrabold leading-tight tracking-[-.06em] sm:text-5xl">
+              Pertanyaan yang sering ditanyakan
+            </h2>
+            <p className="mt-6 max-w-md leading-7 text-slate-600">
+              Belum ketemu jawabannya? Hubungi kami langsung.
+            </p>
+          </motion.div>
+          <FAQAccordion items={faqItems} />
         </div>
       </section>
 
